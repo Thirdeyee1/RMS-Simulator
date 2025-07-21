@@ -1,3 +1,4 @@
+
 import os
 from datetime import datetime
 from PyQt5.QtWidgets import QMainWindow, QPushButton, QVBoxLayout, QWidget
@@ -36,9 +37,9 @@ class TrendWindow(QMainWindow):
             vb.enableAutoRange(axis=vb.XAxis, enable=False)
 
         thresholds = [
-            (0.28, '#90EE90', 'Good'),
-            (1.12, '#FFFF99', 'Satisfactory'),
-            (2.80, '#FFD580', 'Unsatisfactory'),
+            (1.12, '#90EE90', 'Good'),
+            (2.80, '#FFFF99', 'Satisfactory'),
+            (4.50, '#FFD580', 'Unsatisfactory'),
             (7.10, '#FF9999', 'Unacceptable'),
         ]
 
@@ -46,7 +47,7 @@ class TrendWindow(QMainWindow):
             line = pg.InfiniteLine(pos=y_val, angle=0, pen=pg.mkPen(color, width=1.5, style=Qt.DashLine))
             self.plot_widget.addItem(line)
             text = pg.TextItem(text=f"{label} ({y_val:.2f})", color=color, anchor=(1, 1))
-            text.setPos(x_data[-1] if x_data else 0, y_val)
+            text.setPos(x_data[-1] if x_data else 0, y_val - 0.5)
             self.plot_widget.addItem(text)
 
         scatter = pg.ScatterPlotItem()
