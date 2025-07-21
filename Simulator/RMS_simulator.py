@@ -248,17 +248,17 @@ class RMSMonitor(QWidget):
 
     def add_class_I_thresholds(self):
         thresholds = [
-            (0.28, "Good", QColor(0, 255, 0, 100)),
-            (1.12, "Satisfactory", QColor(255, 255, 0, 100)),
-            (2.28, "Unsatisfactory", QColor(255, 165, 0, 100)),
+            (1.12, "Good", QColor(0, 255, 0, 100)),
+            (2.8, "Satisfactory", QColor(255, 255, 0, 100)),
+            (4.50, "Unsatisfactory", QColor(255, 165, 0, 100)),
             (7.10, "Unacceptable", QColor(255, 0, 0, 100))
         ]
         for value, label, color in thresholds:
             line = pg.InfiniteLine(pos=value, angle=0, pen=pg.mkPen(color=color, width=2, style=Qt.DashLine))
-            text = pg.TextItem(label, anchor=(0, 1), color=color)
+            text = pg.TextItem(label, anchor=(0, 0), color=color)
             self.plot_widget.addItem(line)
             self.plot_widget.addItem(text)
-            text.setPos(0.01, value + 0.02)
+            text.setPos(0.01, value - 0.02)
 
 
 if __name__ == "__main__":
